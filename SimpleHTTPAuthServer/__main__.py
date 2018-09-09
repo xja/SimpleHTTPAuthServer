@@ -4,13 +4,22 @@ A simple authenticated web server handler
 
 from __future__ import print_function
 
-from SimpleHTTPServer import SimpleHTTPRequestHandler
-import os
-import sys
-import base64
-import ssl
-import SocketServer
+
 import argparse
+import base64
+import os
+import ssl
+import sys
+
+try:
+    from SimpleHTTPServer import SimpleHTTPRequestHandler
+except ImportError:
+    from http.server import SimpleHTTPRequestHandler
+
+try:
+    from SocketServer import TCPServer
+except ImportError:
+    from socketserver import TCPServer
 
 from . import __prog__
 
@@ -52,7 +61,7 @@ class SimpleHTTPAuthHandler(SimpleHTTPRequestHandler):
 
 def serve_https(https_port=80, https=True, start_dir=None, handler_class=SimpleHTTPAuthHandler):
     ''' setting up server '''
-    httpd = SocketServer.TCPServer(("", https_port), handler_class)
+    httpd = TCPServer(("", https_port), handler_class)
 
     if https:
         httpd.socket = ssl.wrap_socket(httpd.socket, keyfile=KEY_FILE,
