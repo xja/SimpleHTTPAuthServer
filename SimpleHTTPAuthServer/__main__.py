@@ -23,14 +23,14 @@ class SimpleHTTPAuthHandler(SimpleHTTPRequestHandler):
 
     def do_HEAD(self):
         ''' head method '''
-        print "send header"
+        print("send header")
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
     def do_authhead(self):
         ''' do authentication '''
-        print "send header"
+        print("send header")
         self.send_response(401)
         self.send_header('WWW-Authenticate', 'Basic realm=\"Test\"')
         self.send_header('Content-type', 'text/html')
@@ -57,11 +57,11 @@ def serve_https(https_port=80, https=True, start_dir=None, handler_class=SimpleH
                                        certfile=CERT_FILE, server_side=True)
 
     if start_dir:
-        print "Changing dir to {cd}".format(cd=start_dir)
+        print("Changing dir to {cd}".format(cd=start_dir))
         os.chdir(start_dir)
 
     socket_addr = httpd.socket.getsockname()
-    print "Serving HTTP on", socket_addr[0], "port", socket_addr[1], "..."
+    print("Serving HTTP on", socket_addr[0], "port", socket_addr[1], "...")
     httpd.serve_forever()
 
 def main():
@@ -75,10 +75,10 @@ def main():
 
     if args.https:
         if not (os.path.exists(CERT_FILE) and os.path.exists(KEY_FILE)):
-            print >>sys.stderr
-            print >>sys.stderr, "Missing {} or {}".format(CERT_FILE, KEY_FILE)
-            print >>sys.stderr, "Run `{}`".format(SSL_CMD)
-            print >>sys.stderr
+            print("", file=sys.stderr)
+            print("Missing {} or {}".format(CERT_FILE, KEY_FILE), file=sys.stderr)
+            print("Run `{}`".format(SSL_CMD), file=sys.stderr)
+            print("", file=sys.stderr)
             sys.exit(1)
 
     SimpleHTTPAuthHandler.KEY = base64.b64encode(args.key)
