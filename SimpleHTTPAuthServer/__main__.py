@@ -2,6 +2,8 @@
 A simple authenticated web server handler
 '''
 
+from __future__ import print_function
+
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 import os
 import sys
