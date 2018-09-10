@@ -8,7 +8,7 @@ setup(
 	version=__version__,
 	description='Simple HTTP and HTTPS Auth Server',
 	author='Michael Li',
-	author_email='@tianhuil',
+	author_email='me@tianhui.li',
 	url='https://github.com/tianhuil/SimpleHTTPAuthServer/',
 	packages=[__prog__],
     classifiers=[
