@@ -14,8 +14,8 @@ dist:
 	python3 setup.py sdist
 
 test-upload:
-	twine upload dist/SimpleHTTPAuthServer-1.2.tar.gz -r pypitest
+	twine upload dist/SimpleHTTPAuthServer-*.tar.gz -r pypitest
 
 upload:
-	twine upload dist/SimpleHTTPAuthServer-1.2.tar.gz -r pypi
+	twine upload dist/SimpleHTTPAuthServer-*.tar.gz -r pypi
 
